@@ -13,6 +13,7 @@ import AuthPage from './components/pages/AuthPage';
 import DashboardPage from './components/pages/DashboardPage';
 import RestrictedPage from './components/pages/RestrictedPage';
 import ProjectInfoPage from './components/pages/ProjectInfoPage';
+import AdminI18nPage from './components/pages/AdminI18nPage';
 import GamblingWarningModal from './components/ui/GamblingWarningModal';
 
 const MemoizedLandingPage = React.memo(LandingPage);
