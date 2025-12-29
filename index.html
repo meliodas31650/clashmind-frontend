@@ -1,11 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClashMind</title>
+
+  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (correct way: links, not @import inside style) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     ::-webkit-scrollbar {
       width: 10px; /* Slightly wider */
@@ -46,33 +56,30 @@
       background-position: 0% 0%, 100% 100%, 50% 50%, 20% 80%, 80% 20%; /* Varied positions */
       background-repeat: no-repeat; /* All nebulae should not repeat */
       background-attachment: fixed; /* Makes the cosmic background fixed during scroll */
-      
+
       color: #E0E7FF; /* Slightly softer base text color */
-      position: relative; 
-      overflow-x: hidden; 
+      position: relative;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased; /* Smoother text rendering */
       -moz-osx-font-smoothing: grayscale;
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap'); /* Added 900 weight */
 
     .font-orbitron {
       font-family: 'Orbitron', sans-serif;
     }
 
-    @keyframes floatParticles { 
+    @keyframes floatParticles {
       0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
       20% { opacity: 0.6; } /* Slightly reduced max opacity for subtlety */
       80% { opacity: 0.6; }
       100% { transform: translateY(-100vh) translateX(calc(var(--particle-tx) * 70px)) scale(0.4); opacity: 0; } /* Adjusted travel & scale */
     }
-    
-    .particle-effect { 
+
+    .particle-effect {
       /* particles are within App div */
     }
 
-    .cortex-arena-bg { 
+    .cortex-arena-bg {
       background-color: #0A0D14; /* Slightly darker base */
       background-image:
         radial-gradient(circle at 1px 1px, rgba(161, 0, 255, 0.07) 1px, transparent 0), /* More subtle grid, using purple */
@@ -83,60 +90,60 @@
       background-repeat: repeat, no-repeat, no-repeat;
     }
 
-    .glow-border-gold-global { 
-        border: 2px solid transparent;
-        border-image: linear-gradient(to bottom, #FFD700, #FF00C8, #A100FF) 1; 
-        /* Slightly more intense shadow for a "premium" feel */
-        box-shadow: 0 0 12px rgba(255, 215, 0, 0.5), 0 0 18px rgba(255, 0, 200, 0.4), 0 0 25px rgba(161, 0, 255, 0.3);
-        animation: pulse-synthwave-border 2.5s infinite alternate; /* Slightly slower pulse */
+    .glow-border-gold-global {
+      border: 2px solid transparent;
+      border-image: linear-gradient(to bottom, #FFD700, #FF00C8, #A100FF) 1;
+      /* Slightly more intense shadow for a "premium" feel */
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5), 0 0 18px rgba(255, 0, 200, 0.4), 0 0 25px rgba(161, 0, 255, 0.3);
+      animation: pulse-synthwave-border 2.5s infinite alternate; /* Slightly slower pulse */
     }
 
     @keyframes pulse-synthwave-border {
-        from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 0 0 15px rgba(255, 0, 200, 0.3), 0 0 20px rgba(161, 0, 255, 0.2); }
-        to { box-shadow: 0 0 18px rgba(255, 215, 0, 0.7), 0 0 28px rgba(255, 0, 200, 0.6), 0 0 35px rgba(161, 0, 255, 0.5); }
-    }
-    
-    @keyframes neural-line { 
-        0% { transform: translateX(-100%) scaleX(0.3); opacity: 0; } /* Thinner start */
-        10% { opacity: 0.8; transform: scaleX(1); } /* Slightly less opaque */
-        90% { opacity: 0.8; transform: scaleX(1); }
-        100% { transform: translateX(100%) scaleX(0.3); opacity: 0; } /* Thinner end */
+      from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 0 0 15px rgba(255, 0, 200, 0.3), 0 0 20px rgba(161, 0, 255, 0.2); }
+      to { box-shadow: 0 0 18px rgba(255, 215, 0, 0.7), 0 0 28px rgba(255, 0, 200, 0.6), 0 0 35px rgba(161, 0, 255, 0.5); }
     }
 
-    body::before { 
+    @keyframes neural-line {
+      0% { transform: translateX(-100%) scaleX(0.3); opacity: 0; } /* Thinner start */
+      10% { opacity: 0.8; transform: scaleX(1); } /* Slightly less opaque */
+      90% { opacity: 0.8; transform: scaleX(1); }
+      100% { transform: translateX(100%) scaleX(0.3); opacity: 0; } /* Thinner end */
+    }
+
+    body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       width: 100%; height: 100%;
       z-index: -2;
-      background-image: 
-        radial-gradient(1px 1px at 15% 25%, #E0E7FF, transparent), 
+      background-image:
+        radial-gradient(1px 1px at 15% 25%, #E0E7FF, transparent),
         radial-gradient(1px 1px at 35% 15%, #E0E7FF, transparent),
-        radial-gradient(1.5px 1.5px at 55% 85%, #BCC8DF, transparent), 
+        radial-gradient(1.5px 1.5px at 55% 85%, #BCC8DF, transparent),
         radial-gradient(2px 2px at 65% 35%, #E0E7FF, transparent),
         radial-gradient(1.5px 1.5px at 85% 5%, #FF00C8, transparent), /* Brighter pink star */
         radial-gradient(1.5px 1.5px at 95% 75%, #C160FF, transparent), /* Brighter purple star */
         radial-gradient(1px 1px at 5% 95%, #BCC8DF, transparent),
         radial-gradient(1px 1px at 70% 60%, #E0E7FF, transparent);
-      background-size: 100% 100%; 
+      background-size: 100% 100%;
       animation: twinkle-stars 150s linear infinite alternate; /* Slower, more majestic twinkle */
       pointer-events: none;
       opacity: 0.8; /* Slightly reduced opacity for subtlety */
     }
 
-    @keyframes twinkle-stars { 
+    @keyframes twinkle-stars {
       0% { background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px; }
       /* Adjusted travel distances for a more varied and less predictable movement */
       100% { background-position: -600px 400px, -350px 350px, 250px -150px, 350px -250px, -250px 450px, 150px -250px, -350px 200px, 200px -200px; }
     }
-    
-    body::after { 
+
+    body::after {
       content: '';
       position: fixed;
       left: 0; right: 0; bottom: 0;
       height: 200px; /* Slightly taller horizon glow for more drama */
       z-index: -1;
-      background: linear-gradient(to top, 
+      background: linear-gradient(to top,
         rgba(255, 0, 200, 0.35) 0%, /* Pulse Pink dominant */
         rgba(161, 0, 255, 0.30) 40%, /* Neon Purple */
         rgba(120, 0, 220, 0.20) 70%, /* Deeper Purple */
@@ -160,24 +167,28 @@
       background-color: rgba(11, 15, 26, 0.4); /* Darker, more aligned background */
       border-top: 1px solid rgba(161, 0, 255, 0.2); /* Subtle top border */
     }
-
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "react": "https://esm.sh/react@^19.1.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react/": "https://esm.sh/react@^19.1.0/",
+      "react": "https://esm.sh/react@^19.1.0",
+      "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+    }
   }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+  </script>
+
+  <!-- Removed: <link rel="stylesheet" href="/index.css"> because it doesn't exist at build time -->
 </head>
-<body class="bg-[#0B0F1A]"> 
+
+<body class="bg-[#0B0F1A]">
   <div id="root"></div>
+
   <div class="global-footer-disclaimer">
     ClashMind is intended for adult audiences (18+ or legal age of majority). Play responsibly. Gambling can be addictive.
   </div>
+
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
