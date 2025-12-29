@@ -4,7 +4,7 @@ import GlassCard from './GlassCard';
 import { UserProfile } from '../../types';
 import { NeuronIcon, getNeuronTier } from '../../constants';
 import SkeletonLoader from './SkeletonLoader'; // Import SkeletonLoader
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 /**
  * @typedef LeaderboardDisplayProps
@@ -100,7 +100,7 @@ const LeaderboardItem: React.FC<LeaderboardItemProps> = React.memo(({ user, rank
  * @returns {JSX.Element} The rendered LeaderboardDisplay component.
  */
 const LeaderboardDisplay: React.FC<LeaderboardDisplayProps> = React.memo(({ users, currentUser }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

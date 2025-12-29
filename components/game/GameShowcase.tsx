@@ -4,7 +4,7 @@ import { GameInfo } from '../../types';
 import GlassCard from '../ui/GlassCard'; 
 import Button from '../ui/Button';
 import SkeletonLoader from '../ui/SkeletonLoader'; 
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 /**
  * @typedef GameCardProps
@@ -28,7 +28,7 @@ const MemoizedButton = React.memo(Button);
  * @returns {JSX.Element} The rendered GameCard component.
  */
 const GameCard: React.FC<GameCardProps> = React.memo(({ game, onPlayGame, isLoading }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [isHoveredForDetails, setIsHoveredForDetails] = useState(false);
   const [showInteractionOptions, setShowInteractionOptions] = useState(false);
 
@@ -225,7 +225,7 @@ interface GameShowcaseProps {
  * @returns {JSX.Element} The rendered GameShowcase component.
  */
 const GameShowcase: React.FC<GameShowcaseProps> = React.memo(({ games, onPlayGame }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

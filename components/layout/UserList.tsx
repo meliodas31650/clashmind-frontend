@@ -6,7 +6,7 @@ import SkeletonLoader from '../ui/SkeletonLoader';
 import NextEventTimer from '../ui/NextEventTimer'; // Import NextEventTimer
 import Button from '../ui/Button'; // Import Button
 import { EventsIcon } from '../../constants'; // Import EventsIcon
-import useTranslation from '../../hooks/useTranslation'; // Import useTranslation
+import { useT } from "../../src/contexts/I18nLiveContext"; // Import useTranslation
 
 /**
  * @typedef UserListItemProps
@@ -89,7 +89,7 @@ interface UserListProps {
  */
 const UserList: React.FC<UserListProps> = React.memo(({ users, onOpenPrivateChat, unreadMessages = {}, onNavigate }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const { t } = useTranslation();
+  const { t } = useT();
 
   useEffect(() => {
     const timer = setTimeout(() => {

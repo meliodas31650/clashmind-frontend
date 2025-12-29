@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '../ui/Button';
 import OfficialClashMindLogo from '../ui/OfficialClashMindLogo'; 
 import { NeuronIcon, SparkIcon, CortexArenaIcon, WalletIcon, AdminIcon, RulesIcon, AcademyIcon, ChatIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface ProjectInfoPageProps {
   onNavigateToAuth: () => void;
@@ -30,7 +30,7 @@ const Section: React.FC<{ id?: string, title: string; children: React.ReactNode;
 
 
 const ProjectInfoPage: React.FC<ProjectInfoPageProps> = React.memo(({ onNavigateToAuth, onNavigateToLanding }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   return (
     <div className="min-h-screen w-full bg-transparent text-[#F4F4F4] overflow-y-auto relative">
       

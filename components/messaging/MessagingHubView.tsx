@@ -5,7 +5,7 @@ import ConversationList from './ConversationList';
 import ActiveChatWindow from './ActiveChatWindow';
 import Button from '../ui/Button'; // For modal buttons
 import { BlockIcon, GroupIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface MessagingHubViewProps {
   currentUser: UserProfile | null;
@@ -52,7 +52,7 @@ const MessagingHubView: React.FC<MessagingHubViewProps> = React.memo(({
   onUnblockUser,
   onSetShowCreateGroupModal
 }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [manageBlockedUsersModalOpen, setManageBlockedUsersModalOpen] = useState(false);
   
   // States for Create Group Modal

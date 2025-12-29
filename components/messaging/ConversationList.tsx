@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import { UserProfile, PrivateChatSession, GroupChatSession, ActiveConversationType } from '../../types';
 import { DefaultUserIcon, SearchIcon, GroupIcon, ChatIcon, BlockIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface ConversationListProps {
   currentUser: UserProfile | null;
@@ -27,7 +27,7 @@ const ConversationListItem: React.FC<{
   isOnline?: boolean;
   onClick: () => void;
 }> = React.memo(({ id, type, name, avatarUrl, lastMessageSnippet, unreadCount, isActive, isOnline, onClick }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const defaultAvatarUrl = type === 'group' 
     ? `https://ui-avatars.com/api/?name=${name.substring(0,2)}&background=2A0F3E&color=00E0FF&bold=true&size=128`
     : `https://ui-avatars.com/api/?name=${name.replace(/\s/g, '+').substring(0,1)}&background=181C27&color=00E0FF&bold=true&size=128`;
@@ -84,7 +84,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
   onShowCreateGroupModal,
   onShowManageBlockedUsersModal
 }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [searchTerm, setSearchTerm] = useState('');
 
   const sortedPrivateConversations = useMemo(() => {

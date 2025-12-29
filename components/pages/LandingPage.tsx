@@ -5,7 +5,7 @@ import { GameInfo, UserProfile } from '../../types';
 import Button from '../ui/Button';
 import OfficialClashMindLogo from '../ui/OfficialClashMindLogo'; 
 import { SparkIcon, NeuronIcon, CortexArenaIcon, MyAccountIcon, RulesIcon, WalletIcon, GameIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 /**
  * @typedef LandingPageProps
@@ -38,7 +38,7 @@ const SectionCard: React.FC<{icon: React.ReactNode, titleKey: string, descriptio
  * @returns {JSX.Element} The rendered LandingPage component.
  */
 const LandingPage: React.FC<LandingPageProps> = React.memo(({ onNavigateToAuth, onNavigateToProjectInfo, games, users }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const topGames = games.slice(0, 3); 
 
   return (

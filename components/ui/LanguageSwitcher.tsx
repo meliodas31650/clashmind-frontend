@@ -1,6 +1,6 @@
 
 import React from 'react';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 import Button from './Button'; // Assuming Button component is available
 
 const MemoizedButton = React.memo(Button);
@@ -12,7 +12,7 @@ const MemoizedButton = React.memo(Button);
  * @returns {JSX.Element} The rendered LanguageSwitcher component.
  */
 const LanguageSwitcher: React.FC = React.memo(() => {
-  const { language, setLanguage, t } = useTranslation();
+  const { lang: language, setLang: setLanguage, t } = useT();
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'fr' : 'en';

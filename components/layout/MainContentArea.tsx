@@ -10,7 +10,7 @@ import AdminPlaceholder from '../admin/AdminPlaceholder';
 import WalletPage from '../pages/WalletPage'; 
 import Button from '../ui/Button'; 
 import { QuickMatchIcon, SendIcon, DefaultUserIcon, GLOBAL_CHAT_ID, GLOBAL_CHAT_NAME } from '../../constants'; 
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 import MessagingHubView from '../messaging/MessagingHubView'; 
 import AcademyPlaceholderView from '../info/AcademyPlaceholderView';
 
@@ -63,7 +63,7 @@ const ArenaGlobalChat: React.FC<{
   currentUser: UserProfile | null;
   onSendMessage: (text: string) => void;
 }> = React.memo(({ messages, currentUser, onSendMessage }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [chatInput, setChatInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -154,7 +154,7 @@ const CortexArenaView: React.FC<{
   currentUser: UserProfile | null;
   onSendMessage: (conversationId: string, conversationType: ActiveConversationType, text: string) => void;
 }> = React.memo(({ games, onPlayGame, onQuickMatch, globalChatMessages, currentUser, onSendMessage }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   return (
     <div className="h-full w-full rounded-lg p-1 flex flex-col cortex-arena-bg"> {/* Applied cortex-arena-bg here */}
       <div className="flex justify-between items-center mb-4 md:mb-6 px-4 md:px-6 pt-4 md:pt-6">
@@ -184,7 +184,7 @@ const CortexArenaView: React.FC<{
 });
 
 const MyAccountView: React.FC<{ currentUser: UserProfile | null }> = React.memo(({ currentUser }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   return (
   <div className="p-4 md:p-6"> 
     <SectionTitle title={t('menu.myAccount').toUpperCase()} subtitle={`Manage your profile, ${currentUser?.username || 'Gridrunner'}.`} />
@@ -216,7 +216,7 @@ const MyAccountView: React.FC<{ currentUser: UserProfile | null }> = React.memo(
 });
 
 const RulesAndGamesView: React.FC<{ games: GameInfo[] }> = React.memo(({ games }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   return (
   <div className="p-4 md:p-6"> 
     <SectionTitle title={t('menu.rulesAndGames').toUpperCase()} subtitle={t('landingPage.heroSubtitle')} />

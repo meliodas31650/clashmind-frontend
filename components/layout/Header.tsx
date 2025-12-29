@@ -5,7 +5,7 @@ import CurrencyDisplay from '../ui/CurrencyDisplay';
 import { SparkIcon, NeuronIcon, ChatIcon, MyAccountIcon } from '../../constants';
 import Button from '../ui/Button'; 
 import LanguageSwitcher from '../ui/LanguageSwitcher'; 
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 import { MenuItemKey, MatchmakingStatus, ActiveSection } from '../../types'; 
 
 /**
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = React.memo(({
   matchmakingStatus = MatchmakingStatus.Idle,
   onOpenGlobalChat
 }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const effectiveAvatarUrl = useMemo(() => {

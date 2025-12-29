@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { calculateTimeRemaining, TimeRemaining } from '../../utils/timeUtils'; // Assuming you'll move these here or import
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 // Placeholder: Set a future date for the next event
 // This should ideally come from a shared constant or props if dynamic
@@ -20,7 +20,7 @@ const TimeSegment: React.FC<{ value: number; label: string }> = ({ value, label 
 );
 
 const NextEventTimer: React.FC<NextEventTimerProps> = React.memo(() => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(calculateTimeRemaining(NEXT_EVENT_DATE));
 
   useEffect(() => {

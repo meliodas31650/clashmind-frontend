@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { UserProfile, ChatMessage, ActiveConversationType, GameInfo, PrivateChatSession, GroupChatSession, UserInteractionOptions } from '../../types';
 import Button from '../ui/Button';
 import { SendIcon, ChallengeIcon, BlockIcon, DefaultUserIcon, MoreVerticalIcon, ChatIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface ActiveChatWindowProps {
   currentUser: UserProfile | null;
@@ -34,7 +34,7 @@ const ActiveChatWindow: React.FC<ActiveChatWindowProps> = ({
   onBlockUser,
   blockedUserIds = [],
 }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const [message, setMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showGameSelection, setShowGameSelection] = useState(false);

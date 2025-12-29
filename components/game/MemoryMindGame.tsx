@@ -22,7 +22,7 @@ import {
   NEURON_WIN_GENERAL,
   NEURON_LOSS_GENERAL
 } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface MemoryMindGameProps {
   gameName: string;
@@ -56,7 +56,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const MemoryMindGame: React.FC<MemoryMindGameProps> = React.memo(({ gameName, onExitGame }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   const [phase, setPhase] = useState<GamePhase>('idle');
   const [totalTimeLeft, setTotalTimeLeft] = useState(MEMORY_MIND_GAME_DURATION);

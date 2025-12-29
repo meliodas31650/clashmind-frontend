@@ -3,8 +3,10 @@
 import React, { useState, useCallback, useEffect, useMemo, Suspense } from 'react';
 import { PLACEHOLDER_USERS, AVAILABLE_GAMES, MENU_ITEMS_KEYS, GLOBAL_CHAT_ID, GLOBAL_CHAT_NAME } from './constants';
 import { ActiveSection, UserProfile, AppView, PlayingGameInfo, PrivateChatSession, GroupChatSession, ChatMessage, MatchmakingStatus, GameInfo, ActiveConversationType } from './types';
+import { LocalizationProvider } from './contexts/LocalizationContext';
 import ErrorBoundary from './components/ui/ErrorBoundary';
-import { useT } from "./src/contexts/I18nLiveContext";
+import useTranslation from './hooks/useTranslation'; 
+
 // Page Components
 import LandingPage from './components/pages/LandingPage';
 import AuthPage from './components/pages/AuthPage';
@@ -355,7 +357,7 @@ const App: React.FC = () => {
   };
   
   const AppContent: React.FC = () => {
-    const { t } = useT(); 
+    const { t } = useTranslation(); 
     return (
       <div className="min-h-screen w-screen overflow-x-hidden bg-transparent text-[#F4F4F4] font-inter particle-effect relative">
         {particleLayers}
@@ -367,9 +369,11 @@ const App: React.FC = () => {
 
   return (
     <ErrorBoundary>
-       <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center bg-[#0B0F1A] text-[#00E0FF] text-xl font-orbitron">Loading Grid Protocol...</div>}>
+      <LocalizationProvider>
+        <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center bg-[#0B0F1A] text-[#00E0FF] text-xl font-orbitron">Loading Grid Protocol...</div>}>
           <AppContent />
-        </Suspense> 
+        </Suspense>
+      </LocalizationProvider>
     </ErrorBoundary>
   );
 };

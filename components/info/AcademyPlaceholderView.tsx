@@ -2,12 +2,12 @@
 import React from 'react';
 import GlassCard from '../ui/GlassCard';
 import { AcademyIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 const MemoizedGlassCard = React.memo(GlassCard);
 
 const AcademyPlaceholderView: React.FC = React.memo(() => {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   return (
     <div className="p-4 md:p-6 h-full flex flex-col space-y-6 overflow-y-auto">

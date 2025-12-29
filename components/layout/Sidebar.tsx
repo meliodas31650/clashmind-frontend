@@ -3,7 +3,7 @@
 import React from 'react';
 import { ActiveSection, MenuItemKey } from '../../types';
 import OfficialClashMindLogo from '../ui/OfficialClashMindLogo';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 /**
  * @typedef SidebarProps
@@ -26,7 +26,7 @@ const MemoizedOfficialClashMindLogo = React.memo(OfficialClashMindLogo);
  * @returns {JSX.Element} The rendered Sidebar component.
  */
 const Sidebar: React.FC<SidebarProps> = React.memo(({ menuItemKeys, activeItem, onNavigate }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   return (
     <aside className="w-64 bg-gradient-to-b from-[#181C27]/90 to-[#10051C]/95 backdrop-blur-xl p-4 flex flex-col border-r-2 border-[#A100FF]/70 shadow-2xl shadow-[#A100FF]/25">

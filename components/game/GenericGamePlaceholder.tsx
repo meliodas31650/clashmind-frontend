@@ -2,7 +2,7 @@
 import React from 'react';
 import Button from '../ui/Button';
 import { GameIcon } from '../../constants'; // Or a more generic "loading" icon
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface GenericGamePlaceholderProps {
   gameName: string;
@@ -12,7 +12,7 @@ interface GenericGamePlaceholderProps {
 const MemoizedButton = React.memo(Button);
 
 const GenericGamePlaceholder: React.FC<GenericGamePlaceholderProps> = React.memo(({ gameName, onExitGame }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-full bg-gradient-to-br from-[#0B0F1A] via-[#150035] to-[#220A30] text-[#F4F4F4] p-4 md:p-8 relative overflow-hidden">

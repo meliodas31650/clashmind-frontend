@@ -4,7 +4,7 @@ import GlassCard from '../ui/GlassCard';
 import Button from '../ui/Button';
 import { UserProfile } from '../../types';
 import { SparkIcon, WalletIcon } from '../../constants';
-import useTranslation from '../../hooks/useTranslation';
+import { useT } from "../../src/contexts/I18nLiveContext";
 
 interface WalletPageProps {
   currentUser: UserProfile | null;
@@ -14,7 +14,7 @@ const MemoizedGlassCard = React.memo(GlassCard);
 const MemoizedButton = React.memo(Button);
 
 const WalletPage: React.FC<WalletPageProps> = React.memo(({ currentUser }) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const currentSparks = currentUser?.sparks || 0;
 
   const handleDeposit = () => alert(t('walletPage.depositAlert', { defaultValue: 'Deposit functionality (not implemented). This would integrate with a payment gateway.'}));
