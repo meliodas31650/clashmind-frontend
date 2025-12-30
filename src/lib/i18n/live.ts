@@ -24,7 +24,7 @@ export function useLiveT(lang: Lang, apiBase: string) {
         const res = await fetch(`${apiBase}/api/translations?lang=${lang}`);
         const json = await res.json();
         if (!alive) return;
-        setDict(json?.data ?? {});
+        setDict((json?.data ?? json?.translations ?? {}) as Record<string,string>);
       } catch {
         if (!alive) return;
         setDict({});
@@ -35,7 +35,9 @@ export function useLiveT(lang: Lang, apiBase: string) {
     }
 
     load();
-    const id = window.setInterval(load, 1500);
+    const intervalMs = (import.meta.env.DEV ? 1500 : 30000);
+    const id = window.setInterval(load, intervalMs);
+
     return () => {
       alive = false;
       window.clearInterval(id);
