@@ -13,7 +13,7 @@ const Ctx = createContext<I18nCtx | null>(null);
 const API_BASE =
   (import.meta.env.VITE_API_BASE_URL as string) ||
   (import.meta.env.VITE_API_BASE as string) ||
-  "http://localhost:3000";
+  (import.meta.env.DEV ? "http://localhost:3001" : "https://clashmind-backend.onrender.com");
 
 const DEFAULT_LANG = ((import.meta.env.VITE_LANG as string) || "fr") as Lang;
 
